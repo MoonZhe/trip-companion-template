@@ -41,3 +41,7 @@ pnpm dev
 ## Keep private things private
 
 Never commit `.env.local`, Google key files, tickets or receipts. If you re-create the sample data from your own sheet, don't publish it.
+
+## Licence
+
+MIT. See `LICENSE`.
