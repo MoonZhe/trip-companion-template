@@ -1,0 +1,104 @@
+@import 'tailwindcss';
+
+/*
+  "Momiji": warm washi paper under white cards, near-black ink. One accent per screen: the city
+  of the day (set via --accent on the app shell; colours in src/lib/trip/city.ts).
+  good = done, warn = errors and running late, caution = time to go / closed soon.
+*/
+:root {
+  --paper: #f8f3ec;
+  --card: #ffffff;
+  --sunk: #efe7dc;
+  --ink: #211a16;
+  --ink-soft: #51453d;
+  --ink-faint: #6c5f56;
+  --line: #e6dacc;
+  --accent: #2d4563;
+  --accent-ink: #ffffff;
+  /* How much to lift the accent toward white when it's used as text (dark mode needs it). */
+  --accent-lift: 0%;
+  --accent-soft-amount: 11%;
+  --good: #33693f;
+  --good-ink: #ffffff;
+  --warn: #a0203f;
+  --warn-ink: #ffffff;
+  --caution: #f59e0b;
+  --caution-ink: #111111;
+  --caution-text: #92400e;
+  --shadow: 0 1px 2px rgb(33 26 22 / 0.05), 0 8px 24px -12px rgb(33 26 22 / 0.14);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #15110f;
+    --card: #1f1a17;
+    --sunk: #2a2420;
+    --ink: #f1e9e1;
+    --ink-soft: #c9bdb2;
+    --ink-faint: #9c9087;
+    --line: #382f2a;
+    --accent-lift: 55%;
+    --accent-soft-amount: 24%;
+    --good: #86c79a;
+    --good-ink: #0e2014;
+    --warn: #f4899f;
+    --warn-ink: #22070d;
+    --caution-text: #fbbf24;
+    --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 10px 30px -12px rgb(0 0 0 / 0.5);
+  }
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-card: var(--card);
+  --color-sunk: var(--sunk);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-faint: var(--ink-faint);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  /* Resolved per element, so each city's colour is used where it's set. */
+  --color-accent-soft: color-mix(in oklab, var(--accent) var(--accent-soft-amount), var(--card));
+  --color-accent-text: color-mix(in oklab, var(--accent), #ffffff var(--accent-lift));
+  --color-good: var(--good);
+  --color-good-ink: var(--good-ink);
+  --color-warn: var(--warn);
+  --color-warn-ink: var(--warn-ink);
+  --color-caution: var(--caution);
+  --color-caution-ink: var(--caution-ink);
+  --color-caution-text: var(--caution-text);
+  --shadow-soft: var(--shadow);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
